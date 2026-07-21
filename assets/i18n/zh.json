@@ -1,0 +1,41 @@
+{
+  "_meta": "Provisional Chinese for UI chrome only. Yilin and the SUES ACI Lab own the canonical terminology and the locked bilingual glossary. Framework terms (the four capabilities, dæmon, Mens, Manus, Membra) are not set here and should be added from that glossary.",
+
+  "brand.name": "ACI Institute",
+
+  "nav.mission": "使命",
+  "nav.frameworks": "框架",
+  "nav.research": "研究",
+  "nav.education": "教育",
+  "nav.advisory": "咨询",
+  "nav.community": "社区",
+
+  "cta.gauge": "开始测评",
+  "cta.join": "加入",
+
+  "footer.tagline": "以人工智能培育创造性的表达与体验，重掌人的能动性。",
+  "footer.explore": "探索",
+  "footer.forYou": "适合你",
+  "footer.institute": "研究院",
+
+  "foot.creatives": "创意工作者",
+  "foot.organizations": "机构",
+  "foot.students": "学生",
+  "foot.book": "书籍",
+  "foot.join": "加入",
+  "foot.contact": "联系",
+  "foot.josephpress": "Joseph Press",
+  "foot.academy": "ACI 学院",
+  "foot.privacy": "隐私政策",
+  "foot.terms": "条款",
+  "foot.accessibility": "无障碍",
+  "foot.rights": "© 2026 ACI Institute",
+
+  "a11y.skip": "跳到主要内容",
+  "a11y.menu": "菜单",
+  "a11y.language": "语言",
+
+  "preview.eyebrow": "设计系统预览",
+  "preview.title": "框架已就位。",
+  "preview.body": "页眉、页脚、配色、字体与双语框架均已上线，页面即将陆续构建。"
+}

@@ -1,0 +1,217 @@
+/* ==========================================================================
+   ACI Institute, design system and shell
+   Single source of truth for color, type, and the shared header and footer.
+   Values fixed in the design brief, Sections 3.1 and 3.2.
+   ========================================================================== */
+
+:root {
+  /* Foundation */
+  --parchment: #F3EAD3;
+  --parchment-deep: #EADCBF;
+  --ink: #2A2420;
+  --ink-soft: #5B5147;
+  --line: #D8C9A6;
+
+  /* Brand (Manus, the Design Object center of Figure 5.3) */
+  --manus: #9A3412;
+  --manus-bright: #B4512A;
+
+  /* The four creative capabilities (fixed, from Figure 5.3) */
+  --ee-blue: #3E6EA5;   /* Extended Engagement  / World Models */
+  --aa-olive: #6E7B3D;  /* Aesthetic Awareness  / Large Language Models */
+  --ac-purple: #5E4B8B; /* Adaptive Coherence   / Causal Models */
+  --ei-orange: #C8721F; /* Expressive Influence / Diffusion Models */
+
+  /* Type families */
+  --font-display: "Fraunces", Georgia, "Times New Roman", serif;
+  --font-body: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  --font-cjk: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", sans-serif;
+
+  /* Type scale (~1.25 ratio) */
+  --fs-display: clamp(2.5rem, 5vw, 4rem);
+  --fs-h1: clamp(2rem, 3.5vw, 2.5rem);
+  --fs-h2: 1.75rem;
+  --fs-h3: 1.375rem;
+  --fs-body: 1.125rem;
+  --fs-small: 0.9375rem;
+
+  /* Layout */
+  --maxw: 1200px;
+  --measure: 68ch;
+  --radius: 10px;
+  --header-h: 68px;
+}
+
+/* Chinese pages swap to a CJK stack so CN reads as designed, not defaulted. */
+html[lang^="zh"] {
+  --font-body: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", sans-serif;
+  --font-display: "Songti SC", "STSong", "Noto Serif SC", "PingFang SC", serif;
+}
+
+/* --- Reset and base ------------------------------------------------------ */
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--parchment);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+h1, h2, h3 { font-family: var(--font-display); line-height: 1.15; font-weight: 600; }
+a { color: var(--manus); }
+img { max-width: 100%; height: auto; }
+
+.wrap { max-width: var(--maxw); margin-inline: auto; padding-inline: 1.5rem; }
+
+.skip-link {
+  position: absolute; left: 0.5rem; top: -3rem;
+  background: var(--manus); color: #fff; padding: 0.5rem 0.9rem;
+  border-radius: 8px; text-decoration: none; z-index: 100;
+  transition: top 0.15s ease;
+}
+.skip-link:focus { top: 0.5rem; }
+
+:where(a, button, [tabindex]):focus-visible {
+  outline: 2px solid var(--manus);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* --- Buttons ------------------------------------------------------------- */
+
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: 0.55rem 1.05rem; border-radius: 999px;
+  font-family: var(--font-body); font-weight: 600; font-size: 0.95rem;
+  text-decoration: none; border: 1px solid transparent; cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+.btn-primary { background: var(--manus); color: #fff; }
+.btn-primary:hover { background: var(--manus-bright); }
+.btn-quiet { background: transparent; color: var(--ink); border-color: var(--line); }
+.btn-quiet:hover { color: var(--manus); border-color: var(--manus); }
+
+/* --- Header -------------------------------------------------------------- */
+
+.site-header {
+  position: sticky; top: 0; z-index: 20;
+  background: color-mix(in srgb, var(--parchment) 88%, transparent);
+  backdrop-filter: saturate(1.1) blur(8px);
+  border-bottom: 1px solid var(--line);
+}
+.header-inner {
+  display: flex; align-items: center; gap: 1.25rem;
+  min-height: var(--header-h);
+}
+.brand {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  text-decoration: none; color: var(--ink);
+  font-family: var(--font-display); font-weight: 600; font-size: 1.25rem;
+  white-space: nowrap;
+}
+.brand-mark { display: inline-flex; }
+.site-nav { display: flex; gap: 1.15rem; margin-left: auto; }
+.site-nav a {
+  color: var(--ink-soft); text-decoration: none; font-size: 0.975rem;
+}
+.site-nav a:hover { color: var(--manus); }
+.header-actions { display: flex; align-items: center; gap: 0.7rem; }
+
+.lang-switch {
+  display: inline-flex; border: 1px solid var(--line);
+  border-radius: 999px; overflow: hidden;
+}
+.lang-switch button {
+  border: 0; background: transparent; cursor: pointer;
+  padding: 0.35rem 0.6rem; font-family: var(--font-body);
+  font-size: 0.8rem; color: var(--ink-soft);
+}
+.lang-switch button[aria-pressed="true"] { background: var(--manus); color: #fff; }
+
+.nav-toggle {
+  display: none; margin-left: auto;
+  background: transparent; border: 1px solid var(--line); border-radius: 8px;
+  font-size: 1.1rem; line-height: 1; padding: 0.4rem 0.6rem;
+  color: var(--ink); cursor: pointer;
+}
+
+/* --- Footer -------------------------------------------------------------- */
+
+.site-footer {
+  background: var(--parchment-deep);
+  border-top: 1px solid var(--line);
+  margin-top: 4rem;
+}
+.footer-inner {
+  display: grid; grid-template-columns: 1.5fr 1fr 1fr 1.2fr; gap: 2rem;
+  padding-block: 3rem 1.5rem;
+}
+.footer-brand .brand-name { font-family: var(--font-display); font-size: 1.15rem; font-weight: 600; }
+.footer-tagline { color: var(--ink-soft); font-size: 0.95rem; max-width: 26ch; margin: 0.5rem 0 0; }
+.footer-col h2 {
+  font-family: var(--font-body); font-size: 0.78rem; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-soft);
+  margin: 0 0 0.7rem;
+}
+.footer-col a {
+  display: block; color: var(--ink); text-decoration: none;
+  padding: 0.2rem 0; font-size: 0.95rem;
+}
+.footer-col a:hover { color: var(--manus); }
+.footer-meta {
+  grid-column: 1 / -1; display: flex; align-items: center; gap: 1.25rem;
+  flex-wrap: wrap; border-top: 1px solid var(--line);
+  margin-top: 1rem; padding-top: 1.25rem;
+}
+.footer-legal { display: flex; gap: 1rem; }
+.footer-legal a { color: var(--ink-soft); text-decoration: none; font-size: 0.85rem; }
+.footer-legal a:hover { color: var(--manus); }
+.footer-rights { margin: 0 0 0 auto; color: var(--ink-soft); font-size: 0.85rem; }
+
+/* --- Shell preview (temporary, replaced by Home in Step 2) ---------------- */
+
+#main { min-height: 40vh; }
+.shell-preview { padding-block: 4rem 2rem; }
+.eyebrow {
+  text-transform: uppercase; letter-spacing: 0.1em;
+  color: var(--manus); font-size: 0.8rem; font-weight: 600; margin: 0;
+}
+.shell-preview .display { font-size: var(--fs-display); margin: 0.5rem 0 1rem; }
+.shell-preview p.lead { max-width: var(--measure); color: var(--ink-soft); }
+.swatches { display: flex; gap: 0.75rem; margin-top: 2.25rem; flex-wrap: wrap; }
+.swatch {
+  width: 8rem; height: 4rem; border-radius: 8px; color: #fff;
+  display: flex; align-items: flex-end; padding: 0.4rem 0.55rem;
+  font-size: 0.72rem; font-weight: 600; line-height: 1.2;
+}
+.swatch.ee { background: var(--ee-blue); }
+.swatch.aa { background: var(--aa-olive); }
+.swatch.ac { background: var(--ac-purple); }
+.swatch.ei { background: var(--ei-orange); }
+
+/* --- Responsive ---------------------------------------------------------- */
+
+@media (max-width: 900px) {
+  .nav-toggle { display: inline-flex; order: 3; }
+  .site-nav {
+    order: 4; margin-left: 0; flex-basis: 100%;
+    flex-direction: column; gap: 0.25rem;
+    display: none; padding: 0.5rem 0 0.75rem;
+  }
+  body.nav-open .site-nav { display: flex; }
+  .site-nav a { padding: 0.5rem 0; }
+  .header-inner { flex-wrap: wrap; }
+  .header-actions { margin-left: auto; }
+  .footer-inner { grid-template-columns: 1fr 1fr; }
+  .footer-brand { grid-column: 1 / -1; }
+  .footer-rights { margin-left: 0; flex-basis: 100%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}

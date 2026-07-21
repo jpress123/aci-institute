@@ -1,0 +1,39 @@
+{
+  "brand.name": "ACI Institute",
+
+  "nav.mission": "Mission",
+  "nav.frameworks": "Frameworks",
+  "nav.research": "Research",
+  "nav.education": "Education",
+  "nav.advisory": "Advisory",
+  "nav.community": "Community",
+
+  "cta.gauge": "Take the Gauge",
+  "cta.join": "Join",
+
+  "footer.tagline": "Cultivating creative expression and experience with AI, to reclaim human agency.",
+  "footer.explore": "Explore",
+  "footer.forYou": "For you",
+  "footer.institute": "Institute",
+
+  "foot.creatives": "Creatives",
+  "foot.organizations": "Organizations",
+  "foot.students": "Students",
+  "foot.book": "The Book",
+  "foot.join": "Join",
+  "foot.contact": "Contact",
+  "foot.josephpress": "Joseph Press",
+  "foot.academy": "ACI Academy",
+  "foot.privacy": "Privacy",
+  "foot.terms": "Terms",
+  "foot.accessibility": "Accessibility",
+  "foot.rights": "© 2026 ACI Institute",
+
+  "a11y.skip": "Skip to content",
+  "a11y.menu": "Menu",
+  "a11y.language": "Language",
+
+  "preview.eyebrow": "Design system preview",
+  "preview.title": "The shell is in place.",
+  "preview.body": "Header, footer, colors, type, and the bilingual scaffolding are live. Pages come next."
+}
