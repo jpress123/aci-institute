@@ -29,7 +29,12 @@
   function apply() {
     document.documentElement.lang = state.lang === "zh" ? "zh-Hans" : "en";
     document.querySelectorAll("[data-i18n]").forEach(function (el) {
-      el.textContent = t(el.getAttribute("data-i18n"));
+      var key = el.getAttribute("data-i18n");
+      var val = t(key);
+      // If no translation was found (val falls back to the key) keep any text
+      // already in place, so a failed catalog load never shows a raw key.
+      if (val === key && el.textContent && el.textContent.trim()) return;
+      el.textContent = val;
     });
     document.querySelectorAll("[data-i18n-attr]").forEach(function (el) {
       el.getAttribute("data-i18n-attr").split(",").forEach(function (pair) {
