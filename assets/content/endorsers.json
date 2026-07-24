@@ -1,0 +1,23 @@
+{
+  "_meta": "Placeholders. The manuscript Advance Praise section is empty, so replace these with the confirmed endorsers: name, title and organization, quote, and optionally a photo filename placed in assets/pix/. Add quote_zh for Chinese. If photo is omitted, the card shows a monogram from initials.",
+  "endorsers": [
+    {
+      "initials": "AB",
+      "name": "Endorser name",
+      "role": "Title, Organization",
+      "quote": "An approved advance-praise quote will appear here."
+    },
+    {
+      "initials": "CD",
+      "name": "Endorser name",
+      "role": "Title, Organization",
+      "quote": "An approved advance-praise quote will appear here."
+    },
+    {
+      "initials": "EF",
+      "name": "Endorser name",
+      "role": "Title, Organization",
+      "quote": "An approved advance-praise quote will appear here."
+    }
+  ]
+}

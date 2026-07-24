@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Community · ACI Institute</title>
+  <meta name="description" content="A community of practitioners cultivating Agentic Creative Intelligence, anchored by the authors and the School of Design ACI Lab.">
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="/assets/favicon.svg">
+  <script>
+    (function () {
+      try {
+        var l = localStorage.getItem("aci-lang");
+        if (l !== "en" && l !== "zh") {
+          l = (navigator.language || "").toLowerCase().indexOf("zh") === 0 ? "zh" : "en";
+        }
+        document.documentElement.lang = l === "zh" ? "zh-Hans" : "en";
+      } catch (e) {}
+    })();
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono&display=swap">
+  <link rel="stylesheet" href="/assets/css/main.css">
+</head>
+<body>
+  <main id="main">
+
+    <section class="hero wrap">
+      <p class="eyebrow" data-i18n="community.eyebrow">Community</p>
+      <h1 class="display" data-i18n="community.title">The people of ACI.</h1>
+      <p class="subhead" data-i18n="community.sub">A community of practitioners cultivating Agentic Creative Intelligence, anchored by the authors and the School of Design ACI Lab.</p>
+    </section>
+
+    <section class="section wrap">
+      <div class="section-head">
+        <h2 data-i18n="community.who.h">Who we are</h2>
+        <p class="lead" data-i18n="community.who.p">The ACI Institute is a community of practitioners cultivating Agentic Creative Intelligence. It is anchored by the authors of the book and the School of Design ACI Lab at Shanghai University of Engineering Science, and it grows with every creative who joins.</p>
+      </div>
+    </section>
+
+    <section class="section wrap">
+      <div class="section-head">
+        <h2 data-i18n="community.authors.h">The authors</h2>
+      </div>
+      <div class="people-grid">
+
+        <article class="person-card">
+          <img class="person-photo" src="/assets/pix/joseph.jpg" width="132" height="132" loading="lazy" alt="Joseph Press">
+          <div class="person-body">
+            <h3 data-i18n="community.joseph.name">Joseph Press</h3>
+            <p class="person-role" data-i18n="community.joseph.role">Co-author · Futurist and educator</p>
+            <p class="person-bio" data-i18n="community.joseph.bio">Joseph Press, Ph.D. is a futurist, educator, and author. Trained as an architect, he spent more than fifteen years in management consulting and a decade in applied foresight before turning to creative education. He leads the Strategy and Management program at the School of Design at Shanghai University of Engineering Science, and has co-authored five books on design, digital innovation, and leadership-led transformation.</p>
+            <div class="person-links">
+              <a href="https://www.josephpress.com" data-i18n="community.joseph.site">josephpress.com</a>
+              <a href="https://www.josephpress.com" data-i18n="community.joseph.book">Advisory and speaking</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="person-card">
+          <img class="person-photo" src="/assets/pix/yilin.jpg" width="132" height="132" loading="lazy" alt="Yilin Wang">
+          <div class="person-body">
+            <h3 data-i18n="community.yilin.name">Yilin Wang</h3>
+            <p class="person-role" data-i18n="community.yilin.role">Co-author · Chinese-language lead</p>
+            <p class="person-bio" data-i18n="community.yilin.bio">Yilin Wang, Ph.D. is a designer and lecturer at Shanghai University of Engineering Science. She holds a Ph.D. from the College of Design and Innovation at Tongji University and an M.A. from the Royal College of Art. Her work sits at the intersection of creative practice, community engagement, and AI, shaping more sustainable futures.</p>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <section class="section wrap">
+      <div class="section-head">
+        <h2 data-i18n="community.praise.h">Advance praise</h2>
+        <p class="lead" data-i18n="community.praise.p">Endorsements for the book, from people shaping creative practice with AI.</p>
+      </div>
+      <div class="praise-grid" id="endorsers-list"></div>
+    </section>
+
+    <section class="band">
+      <div class="wrap">
+        <h2 data-i18n="community.work.h">Advisory and speaking</h2>
+        <p class="subhead" data-i18n="community.work.p">Joseph Press is available for advisory and speaking on applying ACI to transformative innovation.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="https://www.josephpress.com" data-i18n="community.work.cta">Book a time</a>
+          <a class="btn btn-quiet" href="/join/" data-i18n="cta.join">Join</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="/assets/js/endorsers.js"></script>
+  <script src="/assets/js/i18n.js"></script>
+  <script src="/assets/js/shell.js"></script>
+</body>
+</html>

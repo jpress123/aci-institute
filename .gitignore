@@ -4,3 +4,7 @@
 # Editor cruft
 *.swp
 *~
+
+# Source photos, replaced by optimized web JPEGs in assets/pix/
+assets/pix/Joseph.png
+assets/pix/Yilin.png
