@@ -4,11 +4,10 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>ACI Institute</title>
+  <meta name="description" content="The ACI Institute cultivates creative expression and experience with AI, keeping human agency at the center of the work.">
   <meta name="robots" content="noindex">
   <link rel="icon" href="/assets/favicon.svg">
   <script>
-    /* Set the language before first paint so the CJK font stack applies
-       immediately for returning Chinese visitors, avoiding a swap flash. */
     (function () {
       try {
         var l = localStorage.getItem("aci-lang");
@@ -25,20 +24,100 @@
   <link rel="stylesheet" href="/assets/css/main.css">
 </head>
 <body>
-  <main id="main" class="wrap shell-preview">
-    <p class="eyebrow" data-i18n="preview.eyebrow">Design system preview</p>
-    <h1 class="display" data-i18n="preview.title">The shell is in place.</h1>
-    <p class="lead" data-i18n="preview.body">Header, footer, colors, type, and the bilingual scaffolding are live. Pages come next.</p>
-    <div class="swatches" aria-hidden="true">
-      <span class="swatch ee">Extended Engagement</span>
-      <span class="swatch aa">Aesthetic Awareness</span>
-      <span class="swatch ac">Adaptive Coherence</span>
-      <span class="swatch ei">Expressive Influence</span>
-    </div>
-    <noscript>
-      <p class="lead">This site uses JavaScript for navigation and language switching.
-      Please enable it, or visit <a href="/gauge/">the ACI Gauge</a> directly.</p>
-    </noscript>
+  <main id="main">
+
+    <section class="hero wrap">
+      <p class="eyebrow" data-i18n="home.hero.eyebrow">Agentic Creative Intelligence</p>
+      <h1 class="display" data-i18n="home.hero.title">What kinds of creative expression and experience can reclaim human agency in the agentic era?</h1>
+      <p class="subhead" data-i18n="home.hero.sub">The ACI Institute cultivates creative expression and experience with AI, keeping human agency at the center of the work.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="/gauge/" data-i18n="cta.gauge">Take the Gauge</a>
+        <a class="btn btn-quiet" href="/mission/" data-i18n="cta.mission">Read the mission</a>
+      </div>
+    </section>
+
+    <section class="section wrap">
+      <div class="section-head">
+        <h2 data-i18n="home.caps.title">Four creative capabilities</h2>
+        <p class="lead" data-i18n="home.caps.intro">A practitioner cultivates four capabilities. Held apart, they are four. Brought together around the work, they are one.</p>
+      </div>
+      <div class="cap-grid">
+        <article class="cap-card ee">
+          <h3 data-i18n="cap.ee.name">Extended Engagement</h3>
+          <p class="aspect" data-i18n="cap.ee.aspect">Shape · World Models</p>
+          <p data-i18n="cap.ee.line">Staying with the material until the work is truly earned.</p>
+        </article>
+        <article class="cap-card aa">
+          <h3 data-i18n="cap.aa.name">Aesthetic Awareness</h3>
+          <p class="aspect" data-i18n="cap.aa.aspect">Style · Large Language Models</p>
+          <p data-i18n="cap.aa.line">Sensing before naming, and holding a distinct voice.</p>
+        </article>
+        <article class="cap-card ac">
+          <h3 data-i18n="cap.ac.name">Adaptive Coherence</h3>
+          <p class="aspect" data-i18n="cap.ac.aspect">Story · Causal Models</p>
+          <p data-i18n="cap.ac.line">Holding a through-line while keeping the real question open.</p>
+        </article>
+        <article class="cap-card ei">
+          <h3 data-i18n="cap.ei.name">Expressive Influence</h3>
+          <p class="aspect" data-i18n="cap.ei.aspect">Statement · Diffusion Models</p>
+          <p data-i18n="cap.ei.line">Reaching people with something genuinely your own.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="band center">
+      <div class="wrap">
+        <h2 data-i18n="home.gauge.title">Measure your creative field</h2>
+        <p class="subhead" data-i18n="home.gauge.sub">The ACI Gauge reflects your four capabilities as a single field in about five minutes. See where to grow, then reach an expert.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="/gauge/" data-i18n="cta.gauge">Take the Gauge</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section wrap">
+      <div class="section-head">
+        <h2 data-i18n="home.ways.title">Find your way in</h2>
+      </div>
+      <div class="ways-grid">
+        <article class="way-card">
+          <h3 data-i18n="home.way.creatives.title">Creatives</h3>
+          <p data-i18n="home.way.creatives.body">Join a community of practitioners and design your own dæmon.</p>
+          <a class="btn btn-quiet" href="/join/" data-i18n="cta.join">Join</a>
+        </article>
+        <article class="way-card">
+          <h3 data-i18n="home.way.orgs.title">Organizations</h3>
+          <p data-i18n="home.way.orgs.body">Apply ACI to transformative innovation with your teams.</p>
+          <a class="btn btn-quiet" href="/join/" data-i18n="cta.join">Join</a>
+        </article>
+        <article class="way-card">
+          <h3 data-i18n="home.way.students.title">Students</h3>
+          <p data-i18n="home.way.students.body">Learn the practice and join the community, free.</p>
+          <a class="btn btn-quiet" href="/join/" data-i18n="cta.join">Join</a>
+        </article>
+      </div>
+    </section>
+
+    <section class="section wrap">
+      <div class="book-teaser section-head">
+        <p class="eyebrow" data-i18n="home.book.eyebrow">From the forthcoming book</p>
+        <h2 data-i18n="home.book.title">Agentic Creative Intelligence</h2>
+        <p class="authors" data-i18n="home.book.authors">Joseph Press and Yilin Wang</p>
+        <p data-i18n="home.book.body">The institute grows from the book's framework and practice, a way to design with AI and keep the work your own.</p>
+        <a class="btn btn-quiet" href="/book/" data-i18n="cta.book">About the book</a>
+      </div>
+    </section>
+
+    <section class="band center">
+      <div class="wrap">
+        <h2 data-i18n="home.close.title">Reclaim your creative agency.</h2>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="/gauge/" data-i18n="cta.gauge">Take the Gauge</a>
+          <a class="btn btn-quiet" href="/join/" data-i18n="cta.join">Join</a>
+        </div>
+      </div>
+    </section>
+
   </main>
 
   <script src="/assets/js/i18n.js"></script>

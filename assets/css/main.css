@@ -221,3 +221,74 @@ img { max-width: 100%; height: auto; }
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; animation: none !important; }
 }
+
+/* --- Page sections and components ---------------------------------------- */
+
+.section { padding-block: 3.5rem; }
+.section + .section { border-top: 1px solid var(--line); }
+.section-head { max-width: var(--measure); }
+.section h2 { font-size: var(--fs-h2); margin: 0 0 0.75rem; }
+.lead { font-size: 1.2rem; color: var(--ink-soft); }
+
+/* Hero */
+.hero { padding-block: 4.5rem 3rem; }
+.hero .eyebrow { margin-bottom: 0.75rem; }
+.hero h1 { font-size: var(--fs-display); max-width: 24ch; margin: 0 0 1rem; }
+.hero .subhead { font-size: 1.2rem; color: var(--ink-soft); max-width: var(--measure); margin: 0; }
+.cta-row { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 1.75rem; }
+
+/* Capability cards */
+.cap-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-top: 1.75rem; }
+.cap-card {
+  background: var(--parchment-deep); border-top: 4px solid var(--line);
+  border-radius: 0 0 var(--radius) var(--radius); padding: 1.1rem 1.15rem 1.35rem;
+}
+.cap-card h3 { font-size: 1.15rem; margin: 0 0 0.25rem; }
+.cap-card .aspect {
+  font-size: 0.76rem; text-transform: uppercase; letter-spacing: 0.06em;
+  color: var(--ink-soft); margin: 0 0 0.6rem;
+}
+.cap-card p { margin: 0; font-size: 0.98rem; }
+.cap-card.ee { border-top-color: var(--ee-blue); } .cap-card.ee h3 { color: var(--ee-blue); }
+.cap-card.aa { border-top-color: var(--aa-olive); } .cap-card.aa h3 { color: var(--aa-olive); }
+.cap-card.ac { border-top-color: var(--ac-purple); } .cap-card.ac h3 { color: var(--ac-purple); }
+.cap-card.ei { border-top-color: var(--ei-orange); } .cap-card.ei h3 { color: var(--ei-orange); }
+
+/* Full-width bands */
+.band { background: var(--parchment-deep); border-block: 1px solid var(--line); }
+.band .wrap { padding-block: 3rem; }
+.band.center { text-align: center; }
+.band.center .subhead { margin-inline: auto; }
+.band.center .cta-row { justify-content: center; }
+
+/* Ways in */
+.ways-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 1.75rem; }
+.way-card { border: 1px solid var(--line); border-radius: var(--radius); padding: 1.25rem; }
+.way-card h3 { margin: 0 0 0.4rem; font-size: 1.1rem; }
+.way-card p { margin: 0 0 0.9rem; color: var(--ink-soft); font-size: 0.98rem; }
+
+/* Book teaser */
+.book-teaser .eyebrow { margin: 0 0 0.4rem; }
+.book-teaser h2 { margin: 0 0 0.25rem; }
+.book-teaser .authors { color: var(--ink-soft); margin: 0 0 0.75rem; }
+
+/* Prose (Mission and other reading pages) */
+.prose { max-width: var(--measure); }
+.prose h2 { font-size: var(--fs-h2); margin: 2.25rem 0 0.6rem; }
+.prose h2:first-child { margin-top: 0; }
+.prose p { margin: 0 0 1rem; }
+.cap-def { margin: 1rem 0; padding-left: 1rem; border-left: 3px solid var(--line); }
+.cap-def p { margin: 0; }
+.cap-def b { color: var(--ink); }
+.cap-def.ee { border-left-color: var(--ee-blue); } .cap-def.ee b { color: var(--ee-blue); }
+.cap-def.aa { border-left-color: var(--aa-olive); } .cap-def.aa b { color: var(--aa-olive); }
+.cap-def.ac { border-left-color: var(--ac-purple); } .cap-def.ac b { color: var(--ac-purple); }
+.cap-def.ei { border-left-color: var(--ei-orange); } .cap-def.ei b { color: var(--ei-orange); }
+
+@media (max-width: 900px) {
+  .cap-grid { grid-template-columns: 1fr 1fr; }
+  .ways-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 560px) {
+  .cap-grid { grid-template-columns: 1fr; }
+}

@@ -7,12 +7,12 @@
 (function () {
   "use strict";
 
+  // Phase 1 nav. Education and Advisory are deferred, so they are omitted here.
+  // Their labels remain in the catalog for when they return in a later phase.
   var NAV = [
     ["nav.mission", "/mission/"],
     ["nav.frameworks", "/frameworks/"],
     ["nav.research", "/research/"],
-    ["nav.education", "/education/"],
-    ["nav.advisory", "/advisory/"],
     ["nav.community", "/community/"]
   ];
 
