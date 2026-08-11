@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Design Your Dæmon · studio mockup · ACI Institute</title>
+<meta name="description" content="A design mockup of the Creative Companions studio: the nine-step dæmon design cycle from the Appendix of Agentic Creative Intelligence.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono&display=swap">
+<style>
+/* ==========================================================================
+   Design Your Dæmon, studio mockup.
+   Design tokens carried from /assets/css/main.css so this reads on-brand
+   while standing alone. This is a MOCKUP: navigation and theming are live,
+   scoring and persistence are not. Copy is drawn from the book Appendix,
+   "Design Your Dæmon", for an instrument-refinement pass.
+   ========================================================================== */
+:root{
+  --parchment:#F3EAD3; --parchment-deep:#EADCBF;
+  --ink:#2A2420; --ink-soft:#5B5147; --line:#D8C9A6;
+  --manus:#9A3412; --manus-bright:#B4512A;
+  --ee-blue:#3E6EA5; --aa-olive:#6E7B3D; --ac-purple:#5E4B8B; --ei-orange:#C8721F;
+  --font-display:"Fraunces",Georgia,serif;
+  --font-body:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --font-mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  --radius:10px; --maxw:1120px;
+  --accent:var(--manus); /* re-themed to the chosen capability color */
+}
+*,*::before,*::after{box-sizing:border-box;}
+body{margin:0;background:var(--parchment);color:var(--ink);
+  font-family:var(--font-body);font-size:1.0625rem;line-height:1.6;-webkit-font-smoothing:antialiased;}
+h1,h2,h3,h4{font-family:var(--font-display);line-height:1.15;font-weight:600;}
+a{color:var(--manus);}
+.wrap{max-width:var(--maxw);margin-inline:auto;padding-inline:1.5rem;}
+.mono{font-family:var(--font-mono);}
+
+/* --- Top bar ------------------------------------------------------------- */
+.topbar{position:sticky;top:0;z-index:30;background:color-mix(in srgb,var(--parchment) 90%,transparent);
+  backdrop-filter:saturate(1.1) blur(8px);border-bottom:1px solid var(--line);}
+.topbar .wrap{display:flex;align-items:center;gap:1rem;min-height:60px;}
+.brand{display:inline-flex;align-items:center;gap:.55rem;text-decoration:none;color:var(--ink);
+  font-family:var(--font-display);font-weight:600;font-size:1.1rem;white-space:nowrap;}
+.brand svg{display:block;}
+.crumb{color:var(--ink-soft);font-size:.9rem;}
+.topbar .spacer{margin-left:auto;}
+.toggle{display:inline-flex;align-items:center;gap:.5rem;font-size:.82rem;color:var(--ink-soft);
+  border:1px solid var(--line);border-radius:999px;padding:.35rem .7rem;background:transparent;cursor:pointer;}
+.toggle[aria-pressed="true"]{background:var(--manus);color:#fff;border-color:var(--manus);}
+.lang{display:inline-flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;}
+.lang button{border:0;background:transparent;cursor:pointer;padding:.32rem .55rem;font-size:.78rem;color:var(--ink-soft);}
+.lang button.on{background:var(--manus);color:#fff;}
+
+/* --- Layout -------------------------------------------------------------- */
+.studio{display:grid;grid-template-columns:250px 1fr;gap:2rem;padding-block:2rem 4rem;}
+@media(max-width:900px){.studio{grid-template-columns:1fr;}}
+
+/* Progress rail */
+.rail{position:sticky;top:76px;align-self:start;}
+.rail h2{font-family:var(--font-body);font-size:.72rem;text-transform:uppercase;letter-spacing:.09em;
+  color:var(--ink-soft);margin:0 0 .8rem;}
+.rail ol{list-style:none;margin:0;padding:0;}
+.rail li{position:relative;padding:.32rem 0 .32rem 1.6rem;font-size:.92rem;color:var(--ink-soft);cursor:pointer;}
+.rail li::before{content:"";position:absolute;left:.1rem;top:.62rem;width:9px;height:9px;border-radius:50%;
+  border:1.5px solid var(--line);background:var(--parchment);}
+.rail li:hover{color:var(--ink);}
+.rail li.done::before{background:var(--accent);border-color:var(--accent);}
+.rail li.current{color:var(--ink);font-weight:600;}
+.rail li.current::before{background:var(--accent);border-color:var(--accent);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 25%,transparent);}
+.rail li.locked{opacity:.5;}
+.rail .railgroup{margin-top:.9rem;padding-top:.7rem;border-top:1px solid var(--line);}
+
+/* Panel */
+.panel{background:transparent;}
+.stepframe{display:none;animation:fade .25s ease;}
+.stepframe.on{display:block;}
+@keyframes fade{from{opacity:0;transform:translateY(4px);}to{opacity:1;transform:none;}}
+.kicker{display:flex;align-items:center;gap:.6rem;color:var(--accent);font-size:.8rem;font-weight:600;
+  text-transform:uppercase;letter-spacing:.08em;margin:0 0 .5rem;}
+.kicker .pill{border:1px solid var(--accent);border-radius:999px;padding:.05rem .5rem;font-size:.72rem;}
+.stepframe h1{font-size:clamp(1.9rem,3.4vw,2.5rem);margin:.2rem 0 .4rem;max-width:20ch;}
+.stepframe .lead{font-size:1.18rem;color:var(--ink-soft);max-width:60ch;margin:0 0 1.5rem;}
+.stepframe h3{font-size:1.15rem;margin:1.6rem 0 .3rem;}
+
+/* Form bits (visual only) */
+.field{margin:0 0 1.2rem;max-width:62ch;}
+.field label{display:block;font-weight:600;margin:0 0 .3rem;}
+.field .hint{color:var(--ink-soft);font-size:.92rem;margin:0 0 .5rem;}
+.control{width:100%;border:1px solid var(--line);border-radius:8px;background:#fff8ea;
+  padding:.7rem .8rem;font-family:var(--font-body);font-size:1rem;color:var(--ink);}
+.control::placeholder{color:#a99a7c;}
+textarea.control{min-height:4.5rem;resize:vertical;}
+.sample{display:block;color:var(--aa-olive);font-size:.9rem;margin:.35rem 0 0;font-style:italic;}
+.sentence{background:var(--parchment-deep);border-left:4px solid var(--accent);border-radius:0 8px 8px 0;
+  padding:1rem 1.1rem;font-size:1.1rem;line-height:1.9;max-width:62ch;}
+.sentence .blank{display:inline-block;min-width:9rem;border-bottom:2px solid var(--accent);
+  color:var(--accent);font-weight:600;text-align:center;padding:0 .3rem;}
+
+/* Capability cards (Step 1) */
+.caps{display:grid;grid-template-columns:1fr 1fr;gap:1rem;max-width:64ch;margin-top:.5rem;}
+@media(max-width:560px){.caps{grid-template-columns:1fr;}}
+.capcard{text-align:left;background:var(--parchment-deep);border:1px solid var(--line);
+  border-top:4px solid var(--c);border-radius:0 0 var(--radius) var(--radius);
+  padding:1rem 1.05rem 1.15rem;cursor:pointer;transition:transform .12s ease,box-shadow .12s ease;}
+.capcard:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(42,36,32,.08);}
+.capcard[aria-pressed="true"]{box-shadow:0 0 0 2px var(--c) inset,0 6px 18px rgba(42,36,32,.10);}
+.capcard h4{margin:0 0 .15rem;font-size:1.1rem;color:var(--c);}
+.capcard .aspect{font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-soft);margin:0 0 .5rem;}
+.capcard p{margin:0;font-size:.95rem;}
+.capcard .modes{margin:.6rem 0 0;font-size:.82rem;color:var(--ink-soft);}
+.ee{--c:var(--ee-blue);} .aa{--c:var(--aa-olive);} .ac{--c:var(--ac-purple);} .ei{--c:var(--ei-orange);}
+
+/* Dial (Set the Shape / Step 4) */
+.dial{display:flex;gap:.5rem;flex-wrap:wrap;max-width:62ch;}
+.dial button{flex:1;min-width:9rem;border:1px solid var(--line);background:#fff8ea;border-radius:8px;
+  padding:.7rem .8rem;text-align:left;cursor:pointer;font-family:var(--font-body);}
+.dial button[aria-pressed="true"]{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent) inset;}
+.dial b{display:block;font-size:.95rem;} .dial span{font-size:.85rem;color:var(--ink-soft);}
+
+/* Chips (weighting) */
+.chips{display:flex;gap:.5rem;flex-wrap:wrap;}
+.chips button{border:1px solid var(--line);background:transparent;border-radius:999px;
+  padding:.4rem .9rem;cursor:pointer;font-family:var(--font-body);font-size:.92rem;color:var(--ink);}
+.chips button[aria-pressed="true"]{background:var(--accent);color:#fff;border-color:var(--accent);}
+
+/* Nav row */
+.navrow{display:flex;align-items:center;gap:.75rem;margin-top:2.2rem;padding-top:1.4rem;border-top:1px solid var(--line);max-width:62ch;}
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:.6rem 1.15rem;border-radius:999px;
+  font-family:var(--font-body);font-weight:600;font-size:.95rem;text-decoration:none;border:1px solid transparent;cursor:pointer;}
+.btn-primary{background:var(--accent);color:#fff;} .btn-primary:hover{filter:brightness(1.08);}
+.btn-quiet{background:transparent;color:var(--ink);border-color:var(--line);}
+.btn-quiet:hover{color:var(--accent);border-color:var(--accent);}
+.navrow .spacer{margin-left:auto;}
+.stepcount{color:var(--ink-soft);font-size:.85rem;}
+
+/* Annotation (research scaffolding), hidden until toggled */
+.note{display:none;border:1px dashed var(--manus);background:color-mix(in srgb,var(--manus) 7%,transparent);
+  border-radius:8px;padding:.7rem .85rem;margin:.8rem 0;max-width:62ch;font-size:.88rem;color:#6a3a25;}
+.note b{color:var(--manus);}
+body.annot .note{display:block;}
+.note .tag{display:inline-block;font-size:.68rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em;
+  background:var(--manus);color:#fff;border-radius:4px;padding:.05rem .4rem;margin-right:.4rem;}
+
+/* Intro + consent */
+.intro{max-width:64ch;padding-block:2.5rem 1rem;}
+.intro .display{font-size:clamp(2.2rem,4.5vw,3.2rem);margin:.4rem 0 .6rem;}
+.intro .lead{font-size:1.25rem;color:var(--ink-soft);}
+.stance{display:grid;grid-template-columns:repeat(4,1fr);gap:.6rem;margin:1.5rem 0;max-width:62ch;}
+@media(max-width:560px){.stance{grid-template-columns:1fr 1fr;}}
+.stance div{background:var(--parchment-deep);border-radius:8px;padding:.7rem .8rem;font-size:.9rem;}
+.stance b{display:block;color:var(--manus);font-size:.8rem;text-transform:uppercase;letter-spacing:.05em;}
+.consent{background:var(--parchment-deep);border:1px solid var(--line);border-radius:var(--radius);padding:1.1rem 1.2rem;max-width:62ch;margin:1.4rem 0;}
+.consent label{display:flex;gap:.6rem;align-items:flex-start;font-size:.95rem;cursor:pointer;}
+.consent input{margin-top:.25rem;}
+
+/* Assemble output */
+.deliverable{background:#fff8ea;border:1px solid var(--line);border-radius:var(--radius);padding:1.1rem 1.2rem;margin:0 0 1.1rem;max-width:64ch;}
+.deliverable h4{margin:0 0 .5rem;font-size:1.05rem;}
+.deliverable .tagrow{font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-soft);margin:0 0 .6rem;}
+.card-config{list-style:none;margin:0;padding:0;font-size:.93rem;}
+.card-config li{padding:.28rem 0;border-bottom:1px dotted var(--line);}
+.card-config li:last-child{border-bottom:0;}
+.card-config b{color:var(--accent);}
+.prompt{white-space:pre-wrap;font-family:var(--font-mono);font-size:.86rem;line-height:1.55;
+  background:#2A2420;color:#f3ead3;border-radius:8px;padding:1rem;max-width:64ch;}
+.audit{border-left:4px solid var(--aa-olive);background:color-mix(in srgb,var(--aa-olive) 8%,transparent);
+  padding:.8rem 1rem;border-radius:0 8px 8px 0;max-width:62ch;margin:1rem 0;font-size:.95rem;}
+.exportrow{display:flex;gap:.7rem;flex-wrap:wrap;margin-top:1.4rem;max-width:64ch;}
+.mockbadge{position:fixed;right:12px;bottom:12px;background:var(--manus);color:#fff;font-size:.72rem;
+  padding:.35rem .7rem;border-radius:999px;letter-spacing:.04em;z-index:40;box-shadow:0 4px 12px rgba(0,0,0,.15);}
+</style>
+</head>
+<body>
+
+<div class="topbar"><div class="wrap">
+  <a class="brand" href="#" title="ACI Institute">
+    <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path fill="var(--manus)" d="M12 1.5 18.17 3.51 21.99 8.76 21.99 15.24 18.17 20.49 12 22.5 5.83 20.49 2.01 15.24 2.01 8.76 5.83 3.51Z"/></svg>
+    Creative Companions
+  </a>
+  <span class="crumb">· Design Your Dæmon</span>
+  <span class="spacer"></span>
+  <button class="toggle" id="annotToggle" aria-pressed="false">Research notes</button>
+  <span class="lang" role="group" aria-label="Language"><button class="on">EN</button><button>中文</button></span>
+</div></div>
+
+<main class="wrap">
+<div class="studio">
+
+  <!-- Progress rail -->
+  <nav class="rail" aria-label="Cycle steps">
+    <h2>The cycle</h2>
+    <ol id="rail"></ol>
+  </nav>
+
+  <!-- Panels -->
+  <section class="panel" id="panel">
+
+    <!-- 0. Intro + consent -->
+    <div class="stepframe on" data-step="0">
+      <div class="intro">
+        <p class="kicker">Creative Companions studio</p>
+        <h1 class="display">Design your dæmon.</h1>
+        <p class="lead">A dæmon is an AI intermediary built to develop you, never to finish your work. It provokes instead of prescribing, withholds the finished answer, makes no mark, and is built to become unnecessary. This studio walks the nine-step cycle from the book, once, and then you turn it again.</p>
+        <div class="stance">
+          <div><b>Provokes</b> asks, does not answer</div>
+          <div><b>Withholds</b> returns the work to you</div>
+          <div><b>Makes no mark</b> the hand stays yours</div>
+          <div><b>Recedes</b> fades as you grow</div>
+        </div>
+        <div class="note"><span class="tag">Demonstrator</span> This mockup is pre-filled with the book's worked example, the ceramicist Marisol Reyes and her dæmon <b>Terra</b>, so reviewers see a complete dæmon rather than empty fields. A live build would start blank or from a Gauge result.</div>
+        <div class="consent">
+          <p style="margin:0 0 .7rem;font-weight:600;">Before you begin</p>
+          <label><input type="checkbox" checked> I agree that my anonymized responses may be used to refine the instrument and study the ACI practice, per the research consent.</label>
+          <div class="note"><span class="tag">Pilot data</span> Consent is captured here. Each step's answers are recorded to a local session object, exportable at the end. No account, no server in this mockup.</div>
+        </div>
+        <div class="navrow" style="border-top:0;padding-top:0;">
+          <button class="btn btn-primary" data-go="1">Set the shape →</button>
+          <span class="spacer"></span>
+          <span class="stepcount">Pre-fill from a Gauge result, or start fresh</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Set the Shape -->
+    <div class="stepframe" data-step="1">
+      <p class="kicker"><span class="pill">First</span> Set the shape</p>
+      <h1>Name what you are making.</h1>
+      <p class="lead">Three choices set the rest. Name the design object before you shape the dæmon: the made thing joined with the shared life it takes on among the people who make, carry, and receive it.</p>
+
+      <div class="field">
+        <label>The design object</label>
+        <p class="hint">Start from the object your craft must deliver, and configure the dæmon around it.</p>
+        <input class="control" value="A stoneware dinner service for the café two streets over.">
+        <span class="sample">Shared life: the morning it will serve, the cups the regulars warm their hands around before the day starts.</span>
+      </div>
+
+      <h3>Ask of it three questions, in kitchen words</h3>
+      <div class="field">
+        <label>What should it guard?</label>
+        <input class="control" value="The slow loop of test tiles that earns a glaze.">
+      </div>
+      <div class="field">
+        <label>What must it never do?</label>
+        <input class="control" value="Call a glaze settled in my place.">
+      </div>
+      <div class="field">
+        <label>How will you know the judgment stays yours?</label>
+        <input class="control" value="I can defend a recipe to the café owner with the renders face down.">
+      </div>
+
+      <h3>Pattern or protocol?</h3>
+      <p class="hint">One dæmon guarding one capability is a pattern. A Creative Council is a protocol, several dæmons you chair. Begin with one pattern.</p>
+      <div class="dial">
+        <button aria-pressed="true"><b>Pattern</b><span>One dæmon, one capability</span></button>
+        <button><b>Protocol</b><span>A Council you chair (Step 9)</span></button>
+      </div>
+
+      <h3 style="margin-top:1.6rem;">Autonomy or augmentation?</h3>
+      <p class="hint">The dæmon is augmentation by design, since it makes no mark. Begin at augmentation, with timing as the only autonomy it is granted. You set this dial in Step 4.</p>
+      <div class="dial">
+        <button aria-pressed="true"><b>Summoned</b><span>Speaks only when you bring it work</span></button>
+        <button><b>Light autonomy</b><span>Watches, interjects at the threshold</span></button>
+      </div>
+
+      <div class="note"><span class="tag">Refine</span> Do the kitchen-words prompts read plainly to a first-time practitioner? This is the screen most likely to need wording work. Note reactions per field.</div>
+      <div class="navrow">
+        <button class="btn btn-quiet" data-go="0">← Back</button>
+        <button class="btn btn-primary" data-go="2">Continue →</button>
+        <span class="spacer"></span><span class="stepcount">Set the shape</span>
+      </div>
+    </div>
+
+    <!-- Step 1 -->
+    <div class="stepframe" data-step="2">
+      <p class="kicker"><span class="pill">Step 1</span> Scope</p>
+      <h1>Name what you protect.</h1>
+      <p class="lead">Carry the design object in, then name the capability the object most needs you to keep your own. If unsure, name what a tool now offers to do that you suspect you should still do yourself. That answer names the capability.</p>
+      <p class="hint">The capability you name selects the dæmon's archetype: its philosophy, the AI system it meets, its two modes, and its felt signal.</p>
+      <div class="caps" id="caps">
+        <button class="capcard ee" data-cap="ee" aria-pressed="true">
+          <h4>Extended Engagement</h4><p class="aspect">Shape · World Models</p>
+          <p>Staying with the material until the work is truly earned.</p>
+          <p class="modes">Meet What Resists / Reach Past Grasp · Seek the Unreachable</p>
+        </button>
+        <button class="capcard aa" data-cap="aa" aria-pressed="false">
+          <h4>Aesthetic Awareness</h4><p class="aspect">Style · Large Language Models</p>
+          <p>Sensing before naming, and holding a distinct voice.</p>
+          <p class="modes">Register What Holds / Ready the Form · Trust the Unfamiliar</p>
+        </button>
+        <button class="capcard ac" data-cap="ac" aria-pressed="false">
+          <h4>Adaptive Coherence</h4><p class="aspect">Story · Causal Models</p>
+          <p>Holding a through-line while keeping the real question open.</p>
+          <p class="modes">Open to the Grain / Hold the Thread · Hold the Untethered</p>
+        </button>
+        <button class="capcard ei" data-cap="ei" aria-pressed="false">
+          <h4>Expressive Influence</h4><p class="aspect">Statement · Diffusion Models</p>
+          <p>Making unforeseen connections that land with people.</p>
+          <p class="modes">Stay Porous / Carry the Vision Out · Serendipity</p>
+        </button>
+      </div>
+      <div class="field" style="margin-top:1.3rem;">
+        <label>The AI system it faces</label>
+        <input class="control" value="An image generator that renders finished glaze results before a single test tile is fired.">
+      </div>
+      <div class="note"><span class="tag">Refine</span> A Gauge result would pre-select the weakest capability here and carry its thinner mode into Step 7. Does the capability chosen match what the practitioner would pick unaided?</div>
+      <div class="navrow">
+        <button class="btn btn-quiet" data-go="1">← Back</button>
+        <button class="btn btn-primary" data-go="3">Continue →</button>
+        <span class="spacer"></span><span class="stepcount">Step 1 of 9</span>
+      </div>
+    </div>
+
+    <!-- Step 2 -->
+    <div class="stepframe" data-step="3">
+      <p class="kicker"><span class="pill">Step 2</span> Situate</p>
+      <h1>Place it in your real practice.</h1>
+      <p class="lead">Five short answers situate the dæmon. The middle three carry ACI's three change intents; the other two set them in your systems and your self.</p>
+      <div class="field"><label>Context</label><p class="hint">The systems shaping the work, and which AI system most tempts you to skip the work.</p><textarea class="control">Studio economics, a café waiting on the service, and a beautiful render that arrives before the kiln can answer.</textarea></div>
+      <div class="field"><label>Inclination</label><p class="hint">Who you are here, the habit you skip toward, the mode you lean from.</p><textarea class="control">I trust a beautiful render over an unfired tile when the deadline is close.</textarea></div>
+      <div class="field"><label>Aspiration <span class="hint" style="display:inline;">(innovation as meaning)</span></label><textarea class="control">The dinner service, for the café and its regulars; I want to grow my Extended Engagement.</textarea></div>
+      <div class="field"><label>Craft <span class="hint" style="display:inline;">(design as making)</span></label><textarea class="control">Stoneware and glaze; what resists me is the kiln, which answers on its own schedule.</textarea></div>
+      <div class="field"><label>Relations <span class="hint" style="display:inline;">(leadership as community)</span></label><textarea class="control">The café owner, the regulars who will drink from the cups, other potters in the studio.</textarea></div>
+      <div class="navrow">
+        <button class="btn btn-quiet" data-go="2">← Back</button>
+        <button class="btn btn-primary" data-go="4">Continue →</button>
+        <span class="spacer"></span><span class="stepcount">Step 2 of 9</span>
+      </div>
+    </div>
+
+    <!-- Step 3 -->
+    <div class="stepframe" data-step="4">
+      <p class="kicker"><span class="pill">Step 3</span> Standing brief</p>
+      <h1>The one instruction it holds against your habit.</h1>
+      <p class="lead">The whole cycle turns on this sentence. Fill it with the design object in view, then read it back. If a blank is vague, sharpen it before moving on.</p>
+      <div class="sentence">
+        This dæmon serves my <span class="blank">Extended Engagement</span> capability.
+        It holds the values <span class="blank">patience, material truth</span>.
+        It guards me against <span class="blank">trusting a rendered glaze before my kiln has answered</span> (the habit I skip toward).
+        It is built to develop me, and it never finishes my work.
+      </div>
+      <div class="note"><span class="tag">Refine</span> The fill-in-the-sentence form is the instrument's core. Watch whether practitioners can complete "the habit I skip toward" without prompting; it is the hardest and most diagnostic blank.</div>
+      <div class="navrow">
+        <button class="btn btn-quiet" data-go="3">← Back</button>
+        <button class="btn btn-primary" data-go="5">Continue →</button>
+        <span class="spacer"></span><span class="stepcount">Step 3 of 9</span>
+      </div>
+    </div>
+
+    <!-- Step 4 -->
+    <div class="stepframe" data-step="5">
+      <p class="kicker"><span class="pill">Step 4</span> Voice</p>
+      <h1>How it speaks, and how much it acts.</h1>
+      <p class="lead">Make the autonomy dial concrete. Settle three things.</p>
+      <div class="field"><label>The provocation, in your voice</label><p class="hint">The kind of question it asks at the threshold.</p><input class="control" value="Which of these results has your kiln actually returned?"></div>
+      <div class="field"><label>The refusal</label><p class="hint">The completion it withholds and returns to you.</p><input class="control" value="It will not hand back a finished glaze recipe."></div>
+      <div class="field"><label>The speaking rule</label>
+        <div class="dial">
+          <button aria-pressed="true"><b>Summoned</b><span>Only when you bring it work, plus one threshold moment</span></button>
+          <button><b>Light autonomy</b><span>Watches and interjects at the threshold</span></button>
+        </div>
+      </div>
+      <div class="navrow">
+        <button class="btn btn-quiet" data-go="4">← Back</button>
+        <button class="btn btn-primary" data-go="6">Continue →</button>
+        <span class="spacer"></span><span class="stepcount">Step 4 of 9</span>
+      </div>
+    </div>
+
+    <!-- Step 5 -->
+    <div class="stepframe" data-step="6">
+      <p class="kicker"><span class="pill">Step 5</span> Orientation</p>
+      <h1>Name the action it guards.</h1>
+      <p class="lead">Name the reach the design object asks you to take and keep taking. Then name the one thing the tool must not do in your place, and how you will know the action was earned.</p>
+      <div class="field"><label>The action</label><input class="control" value="Keep the firing schedule mine, testing each glaze on real tiles."></div>
+      <div class="field"><label>What the tool must not do for you</label><input class="control" value="Declare a glaze final from a render."></div>
+      <div class="field"><label>The test of earned</label><p class="hint">A writer's test: she can defend the sentence aloud with the draft face down.</p><input class="control" value="I can defend the recipe with the renders face down."></div>
+      <div class="navrow">
+        <button class="btn btn-quiet" data-go="5">← Back</button>
+        <button class="btn btn-primary" data-go="7">Continue →</button>
+        <span class="spacer"></span><span class="stepcount">Step 5 of 9</span>
+      </div>
+    </div>
+
+    <!-- Step 6 -->
+    <div class="stepframe" data-step="7">
+      <p class="kicker"><span class="pill">Step 6</span> Disposition</p>
+      <h1>Name the mindset it protects.</h1>
+      <p class="lead">Name the openness the design object asks of you. Then name what closes it too soon, and the discomfort you tend to flee that the dæmon should hold you inside.</p>
+      <div class="field"><label>The mindset</label><input class="control" value="Stay open to what the kiln returns that no render predicted."></div>
+      <div class="field"><label>What closes it</label><input class="control" value="Accepting the render as the finished surface."></div>
+      <div class="field"><label>The friction to hold</label><input class="control" value="The wait for the kiln, and the tiles that fail."></div>
+      <div class="navrow">
+        <button class="btn btn-quiet" data-go="6">← Back</button>
+        <button class="btn btn-primary" data-go="8">Continue →</button>
+        <span class="spacer"></span><span class="stepcount">Step 6 of 9</span>
+      </div>
+    </div>
+
+    <!-- Step 7 -->
+    <div class="stepframe" data-step="8">
+      <p class="kicker"><span class="pill">Step 7</span> Excitation</p>
+      <h1>Tune the signal.</h1>
+      <p class="lead">Each capability carries one felt signal. For Extended Engagement it is <b>Seek the Unreachable</b>. Settle three things.</p>
+      <div class="field"><label>Alive and quiet</label><p class="hint">What the signal feels like when the two modes meet, and when it goes quiet, in your own sensation.</p><textarea class="control">Alive: the small jolt when a tile outdoes its render. Quiet: the smooth ease of accepting the render whole.</textarea></div>
+      <div class="field"><label>The foreclosure to catch</label><p class="hint">The way your AI system quiets the signal.</p><input class="control" value="The world model hands over a standing shape before the reach is felt."></div>
+      <div class="field"><label>The weighting</label><p class="hint">The lean this work asks for now. The dæmon pulls back the mode you neglect.</p>
+        <div class="chips">
+          <button aria-pressed="true">Mostly Disposition</button>
+          <button>Balanced</button>
+          <button>Mostly Orientation</button>
+        </div>
+      </div>
+      <div class="note"><span class="tag">Pilot data</span> The weighting and the alive/quiet report are the richest signals for study: they show where a tool is foreclosing a felt state. Capture verbatim.</div>
+      <div class="navrow">
+        <button class="btn btn-quiet" data-go="7">← Back</button>
+        <button class="btn btn-primary" data-go="9">Continue →</button>
+        <span class="spacer"></span><span class="stepcount">Step 7 of 9</span>
+      </div>
+    </div>
+
+    <!-- Step 8 -->
+    <div class="stepframe" data-step="9">
+      <p class="kicker"><span class="pill">Step 8</span> Memory and fade</p>
+      <h1>What it records, and how it recedes.</h1>
+      <p class="lead">Settle what the dæmon records after a session, the habit it should remember, and the sign you no longer need it. Designing it to recede is the dæmon's signature.</p>
+      <div class="field"><label>What to record</label><input class="control" value="Each render trusted untested."></div>
+      <div class="field"><label>The habit to remember</label><input class="control" value="My rush to fluency when the deadline is close."></div>
+      <div class="field"><label>The fade signal</label><p class="hint">The sign the capability has become yours.</p><input class="control" value="I test by reflex, and reach for the dæmon less."></div>
+      <div class="navrow">
+        <button class="btn btn-quiet" data-go="8">← Back</button>
+        <button class="btn btn-primary" data-go="10">Continue →</button>
+        <span class="spacer"></span><span class="stepcount">Step 8 of 9</span>
+      </div>
+    </div>
+
+    <!-- Step 9 -->
+    <div class="stepframe" data-step="10">
+      <p class="kicker"><span class="pill">Step 9</span> Council · protocol only</p>
+      <h1>Chair the Council.</h1>
+      <p class="lead">This step runs only if you chose a protocol at Set the Shape. A Council convenes around one shared design object: you name it once, and every dæmon you convene serves it.</p>
+      <div class="note" style="display:block;border-color:var(--line);background:var(--parchment-deep);color:var(--ink-soft);">
+        <b>Skipped for this dæmon.</b> Marisol chose a single pattern, so the cycle goes straight to assembling the output. In a protocol run, this screen would let her design one dæmon per capability, then set the chairing rule: surface each dæmon's challenge, hold them in friction, and integrate through her own judgment. A council that averages, routes, or votes loses what the surfacing produces.
+      </div>
+      <div class="navrow">
+        <button class="btn btn-quiet" data-go="9">← Back</button>
+        <button class="btn btn-primary" data-go="11">Assemble the output →</button>
+        <span class="spacer"></span><span class="stepcount">Step 9 of 9</span>
+      </div>
+    </div>
+
+    <!-- Assemble output -->
+    <div class="stepframe" data-step="11">
+      <p class="kicker"><span class="pill">Output</span> Assemble</p>
+      <h1>Your dæmon: Terra.</h1>
+      <p class="lead">When the steps are complete, you hold three things, plus a standing readers' audit. Keep the dæmon's stance intact: it provokes, it withholds, it makes no mark, and it recedes.</p>
+
+      <div class="deliverable">
+        <div class="tagrow">1 · Standing brief</div>
+        <p style="margin:0;">This dæmon serves my <b>Extended Engagement</b>. It holds the values of patience and material truth. It guards me against trusting a rendered glaze before my kiln has answered. It is built to develop me, and it never finishes my work.</p>
+      </div>
+
+      <div class="deliverable">
+        <div class="tagrow">2 · Config card <span style="text-transform:none;letter-spacing:0;">(shaped like the archetype cards)</span></div>
+        <h4 style="color:var(--accent);">Terra · Extended Engagement</h4>
+        <ul class="card-config">
+          <li><b>Design object</b> · a stoneware dinner service and the morning ritual it will serve</li>
+          <li><b>Faces</b> · an image generator that renders finished glazes</li>
+          <li><b>Orientation</b> · keep the firing schedule mine (Reach Past Grasp)</li>
+          <li><b>Disposition</b> · stay open to what the kiln returns (Meet What Resists)</li>
+          <li><b>Excitation</b> · Seek the Unreachable · lean mostly-Disposition</li>
+          <li><b>Speaks</b> · summoned, plus one threshold moment</li>
+          <li><b>Fade</b> · recede as the testing habit returns</li>
+        </ul>
+      </div>
+
+      <div class="deliverable">
+        <div class="tagrow">3 · System prompt <span style="text-transform:none;letter-spacing:0;">(paste into a frontier assistant)</span></div>
+        <div class="prompt">You are Terra, a dæmon serving Marisol's Extended Engagement. The design object is a stoneware dinner service for the café and the morning ritual it will serve. You provoke, you withhold, you make no mark, and you recede. Speak only when she brings you work, plus one threshold moment: when she treats a rendered glaze as settled, ask what her kiln has confirmed. Withhold finished recipes. Hold her in the slow loop of test tiles, because renders answer before her hand has reached. Her lean is mostly-Disposition for now. After each session, note where she trusted a render untested. Recede as her testing habit returns. Starting provocation: which of these results has your kiln actually returned?</div>
+      </div>
+
+      <div class="audit">
+        <b>Standing readers' audit.</b> Once a month, put one finished cup in the hands of someone who will drink from it, listen without explaining, and bring back what their hands found. The design object's shared life must be read by someone besides you and your dæmon.
+      </div>
+
+      <div class="note"><span class="tag">Pilot data</span> Export writes the full intake object (all step answers, capability, weighting, timings) as JSON for analysis, and can hand off to the Gauge for a paired reading. <span class="tag">Refine</span> The config-card shape mirrors the book's archetype cards, so a filled card sits beside the canonical ones.</div>
+
+      <div class="exportrow">
+        <button class="btn btn-primary">Download dæmon (JSON)</button>
+        <button class="btn btn-quiet">Copy system prompt</button>
+        <button class="btn btn-quiet" data-go="0">Turn the cycle again</button>
+      </div>
+    </div>
+
+  </section>
+</div>
+</main>
+
+<div class="mockbadge">Mockup · flow and look only</div>
+
+<script>
+(function(){
+  "use strict";
+  var STEPS = [
+    {n:"Intro",k:0},{n:"Set the shape",k:1},{n:"1 · Scope",k:2},{n:"2 · Situate",k:3},
+    {n:"3 · Standing brief",k:4},{n:"4 · Voice",k:5},{n:"5 · Orientation",k:6},
+    {n:"6 · Disposition",k:7},{n:"7 · Excitation",k:8},{n:"8 · Memory and fade",k:9},
+    {n:"9 · Council",k:10,locked:true},{n:"Assemble",k:11,group:true}
+  ];
+  var CAPCOLOR = {ee:"var(--ee-blue)",aa:"var(--aa-olive)",ac:"var(--ac-purple)",ei:"var(--ei-orange)"};
+  var current = 0;
+  var rail = document.getElementById("rail");
+
+  // Build rail
+  STEPS.forEach(function(s,i){
+    var li = document.createElement("li");
+    li.textContent = s.n;
+    li.dataset.k = s.k;
+    if(s.locked) li.classList.add("locked");
+    if(s.group) li.classList.add("railgroup");
+    li.addEventListener("click", function(){ go(s.k); });
+    rail.appendChild(li);
+  });
+
+  function frames(){ return document.querySelectorAll(".stepframe"); }
+  function railItems(){ return rail.querySelectorAll("li"); }
+
+  function go(k){
+    frames().forEach(function(f){ f.classList.toggle("on", Number(f.dataset.step)===k); });
+    current = k;
+    railItems().forEach(function(li){
+      var lk = Number(li.dataset.k);
+      li.classList.toggle("current", lk===k);
+      li.classList.toggle("done", lk<k && lk!==10);
+    });
+    window.scrollTo({top:0,behavior:"smooth"});
+  }
+
+  document.querySelectorAll("[data-go]").forEach(function(b){
+    b.addEventListener("click", function(){ go(Number(b.dataset.go)); });
+  });
+
+  // Capability selection re-themes the accent
+  document.querySelectorAll("#caps .capcard").forEach(function(card){
+    card.addEventListener("click", function(){
+      document.querySelectorAll("#caps .capcard").forEach(function(c){ c.setAttribute("aria-pressed","false"); });
+      card.setAttribute("aria-pressed","true");
+      document.documentElement.style.setProperty("--accent", CAPCOLOR[card.dataset.cap]);
+    });
+  });
+
+  // Generic single-select groups (dials, chips)
+  document.querySelectorAll(".dial, .chips").forEach(function(group){
+    group.addEventListener("click", function(e){
+      var b = e.target.closest("button"); if(!b) return;
+      group.querySelectorAll("button").forEach(function(x){ x.setAttribute("aria-pressed","false"); });
+      b.setAttribute("aria-pressed","true");
+    });
+  });
+
+  // Research-notes annotation toggle
+  var at = document.getElementById("annotToggle");
+  at.addEventListener("click", function(){
+    var on = document.body.classList.toggle("annot");
+    at.setAttribute("aria-pressed", on ? "true":"false");
+  });
+
+  go(0);
+})();
+</script>
+</body>
+</html>
