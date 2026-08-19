@@ -1,0 +1,122 @@
+{
+  "_meta": {
+    "purpose": "Single source of truth for the ACI framework values the site renders: capabilities, aspects, AI architectures, offers and avoids, modes, excitations, taglines, philosophies, colors, and the convergence layer. Pages (Part I learn matrix, capability cards, the Gauge, the studio) read from here so wording changes in one place and stays aligned with the book.",
+    "sources": [
+      "Archetype-Cards-Artist-Handoff.docx (finalized cards, artist handoff) — authoritative for taglines, modes, excitations, offers/avoids, and the model line.",
+      "QA_master-vs-final-archetype-definitions_2026-08-11.md — the Chapter 5 reframe and offers/avoids changes.",
+      "Figure 5.3 and Figure P1.2 (ACI_Figures_FINAL copy) — the Mens/Membra/Manus axis scheme and aspects.",
+      "Colors: design brief v0.3 Section 3.1."
+    ],
+    "notes": [
+      "The printed Figure 5.3 and P1.2 still show the OLD offers/avoids (presence, struggle, inquiry, synthesis); the finalized cards supersede the figures per the QA (item C1). Values here follow the cards.",
+      "Mode names are the finalized card names (Engagement/Extension, etc.), which supersede the descriptive mode names in the June PDF Appendix and v0.3 Gauge spec (Meet What Resists, Stay Porous to the Field, etc.).",
+      "Card mode positions: Mode 1 is left, Mode 2 is right. On Figure P1.2 the horizontal Membra poles are Disposition (left, receptive) and Orientation (right, projective). The Mens-versus-Membra attribution of the capability modes is described differently across sources; confirm before labeling axes in copy.",
+      "Expressive Influence works on 'the crowd,' not 'the field'; 'field' is reserved for Part I.",
+      "Chinese renderings beyond the two Council terms are owned by Yilin with the SUES ACI Lab (locked bilingual glossary)."
+    ],
+    "axes": {
+      "mens": { "gloss": "mind, modes of thinking", "poles": ["Intention (the aim)", "Realization (the material)"] },
+      "membra": { "gloss": "body / limbs, modes of sensing", "poles": ["Disposition (receptive)", "Orientation (projective)"] },
+      "manus": { "gloss": "hands, acts of making", "center": "the Design Object (design artifact + boundary object)" }
+    }
+  },
+  "capabilities": [
+    {
+      "key": "ee",
+      "name": "Extended Engagement",
+      "figure": "1.8",
+      "aspect": "Shape",
+      "architecture": "World Models",
+      "offers": "immersion",
+      "avoids": "feigns feelings",
+      "model_line": "the maker inhabits the material the model only represents",
+      "tagline": "Knowing arrives in the doing",
+      "philosophy": "Zhīxíng Héyī (Knowledge and Action Unified)",
+      "excitation": { "phrase": "Seek the Unreachable", "noun": "the Unreachable", "comfort": "the hand closes on it", "discomfort": "the ache of closing on nothing" },
+      "modes": {
+        "receptive": { "name": "Engagement", "position": "left", "lines": ["pressing into what pushes back", "limbs in the material world"] },
+        "projective": { "name": "Extension", "position": "right", "lines": ["the tool extends the limb", "every move you make is yours"] }
+      },
+      "color": "#3E6EA5",
+      "line": "Staying with the material until the work is truly earned."
+    },
+    {
+      "key": "aa",
+      "name": "Aesthetic Awareness",
+      "figure": "2.4",
+      "aspect": "Style",
+      "architecture": "Large Language Models",
+      "offers": "fluency",
+      "avoids": "apophaticism",
+      "model_line": "the maker knows by unknowing",
+      "tagline": "Look long, the place enters the work",
+      "philosophy": "Guān, Tiānrén Héyī (Sustained Attending, Self and World as One)",
+      "excitation": { "phrase": "Trust the Unfamiliar", "noun": "the Unfamiliar", "comfort": "beauty that reverberates", "discomfort": "the gut tightens" },
+      "modes": {
+        "receptive": { "name": "Awareness", "position": "left", "lines": ["surrender to the scenery", "the senses open, sorting nothing"] },
+        "projective": { "name": "Aesthetic", "position": "right", "lines": ["patterns drawn from the noise", "the vision pressed into form"] }
+      },
+      "color": "#6E7B3D",
+      "line": "Sensing before naming, and holding a distinct voice."
+    },
+    {
+      "key": "ac",
+      "name": "Adaptive Coherence",
+      "figure": "3.3",
+      "aspect": "Story",
+      "architecture": "Causal Inference Models",
+      "offers": "logic",
+      "avoids": "serendipity",
+      "model_line": "the maker lets a stray connection defy the odds",
+      "tagline": "Hold the thread by following the grain",
+      "philosophy": "Wú Wéi (Effortless Action)",
+      "excitation": { "phrase": "Hold the Untethered", "noun": "the Untethered", "comfort": "a hidden join springs open", "discomfort": "the line goes slack" },
+      "modes": {
+        "receptive": { "name": "Adaptation", "position": "left", "lines": ["each move born from the last", "letting the work change the plan"] },
+        "projective": { "name": "Coherence", "position": "right", "lines": ["gripping the whole through the turns", "carrying it through to the close"] }
+      },
+      "color": "#5E4B8B",
+      "line": "Holding a through-line while keeping the real question open."
+    },
+    {
+      "key": "ei",
+      "name": "Expressive Influence",
+      "figure": "4.3",
+      "aspect": "Statement",
+      "architecture": "Diffusion Models",
+      "offers": "reach",
+      "avoids": "conviction",
+      "model_line": "the maker hunts the exception the average buries",
+      "tagline": "Move the crowd that moves you",
+      "philosophy": "Gǎnyìng (Sympathetic Resonance)",
+      "works_on": "the crowd, the people the work moves and is moved by",
+      "excitation": { "phrase": "Bear the Unyielding", "noun": "the Unyielding", "comfort": "the crowd breathes as one", "discomfort": "your want against theirs" },
+      "modes": {
+        "receptive": { "name": "Influence", "position": "left", "lines": ["porous to the crowd's charge", "listening for what it sends back"] },
+        "projective": { "name": "Expression", "position": "right", "lines": ["the vision flung back at them", "held through their refusal"] }
+      },
+      "color": "#C8721F",
+      "line": "Reaching people with something genuinely your own."
+    }
+  ],
+  "convergence": {
+    "key": "council",
+    "name": "The Creative Council",
+    "figure": "5.4",
+    "capacity": "Agentic Creative Intelligence",
+    "chapter5_title": "Cultivating Creative Agency",
+    "aspect": "Shape, Style, Story, Statement, held at once",
+    "architecture": "Orchestration",
+    "offers": "convergence",
+    "avoids": "contradiction",
+    "model_line": "the maker keeps the four in contest",
+    "tagline": "Deepen the four, live them as one",
+    "philosophy": "Wénrén (the Scholar-Artist)",
+    "excitation": { "phrase": "Break the Unchallenged", "noun": "the Unchallenged", "comfort": "the reach keeps widening", "discomfort": "it settles for what it has" },
+    "modes": {
+      "receptive": { "name": "Cultivation", "hanzi": "内修", "pinyin": "Nèi Xiū", "position": "left", "lines": ["each craft worked deeper", "the weak side trained hardest"] },
+      "projective": { "name": "Manifestation", "hanzi": "外现", "pinyin": "Wài Xiàn", "position": "right", "lines": ["the inner work turned to effect", "the more you act, the more you can"] }
+    },
+    "note": "Convergence is the machine's seductive offer, not the goal. The Council holds the four in contest and integrates through the practitioner's judgment. It does not average, route, or vote."
+  }
+}
